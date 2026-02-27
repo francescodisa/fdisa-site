@@ -10,5 +10,20 @@
       "title": "Haenyeo",
       "year": "2025"
     }
+  ],
+  "series": [
+    {
+      "title": "Prova",
+      "items": [
+        {
+          "title": "Prova",
+          "image": "/images/uploads/artworks_y9ukc4uq8u2h7nzau4yh_5-1-.png"
+        },
+        {
+          "title": "prova 2",
+          "image": "/images/uploads/night-dark-tiny-totem-full-botanic-lcsuatr6hw63e4gdh954-2_orig.png"
+        }
+      ]
+    }
   ]
 }
