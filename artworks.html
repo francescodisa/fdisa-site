@@ -29,24 +29,10 @@
       max-width: 680px;
     }
 
-    /* Griglia: auto-fit fa collassare le celle vuote */
     .artworks-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1px;
       background: var(--border);
-    }
-    /* Se le opere sono poche, non stretchiamo su tutta la larghezza */
-    .artworks-grid.few {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1px;
-      background: transparent;
-    }
-    .artworks-grid.few .artwork-item {
-      width: calc(25% - 1px);
-      min-width: 180px;
-      flex-shrink: 0;
     }
 
     .artwork-item {
@@ -237,10 +223,10 @@
         const headerHtml = (titleHtml || descHtml)
           ? `<div class="series-header">${titleHtml}${descHtml}</div>` : '';
 
-        /* se le opere sono meno di 4 usiamo flex per evitare stretch */
-        const gridClass = serie.items.length < 4 ? 'artworks-grid few' : 'artworks-grid';
+        const n = serie.items.length;
+        const cols = n >= 4 ? 'repeat(auto-fill, minmax(220px, 1fr))' : `repeat(${n}, 220px)`;
 
-        const grid = `<div class="${gridClass}">
+        const grid = `<div class="artworks-grid" style="grid-template-columns:${cols}">
           ${serie.items.map(op => {
             const vid = youtubeId(op.youtube);
             const thumb = vid
