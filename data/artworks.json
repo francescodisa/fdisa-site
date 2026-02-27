@@ -13,7 +13,7 @@
   ],
   "series": [
     {
-      "title": "Visual Poetry (2025) - Exhibited at Fellowshiop.xyz",
+      "title": "Visual Poetry",
       "items": [
         {
           "title": "Haenyeo",
@@ -36,7 +36,7 @@
           "year": "2025"
         }
       ],
-      "description": "These visual poems are AI co-produced image sequences built through layered generative models and mixed LoRA files, where intentional parameter drift invites glitches, artifacts, and deviations to become structural. Each work follows a meditative, dreamlike logic in which meaning emerges through wandering attention, unstable identities, and the shifting boundary between perception and reality. Technical “accidents” and misread prompts are treated as part of the poem’s motion, turning machine error into atmosphere, rhythm, and thought.\n"
+      "description": "Exhibited at Fellowship.xyz\n"
     },
     {
       "title": "Ai Manifesta",
@@ -293,7 +293,7 @@
         {
           "title": "Unnameable",
           "year": "2020",
-          "image": "/images/uploads/0a60927dba12f96e_orig.jpg"
+          "image": "/images/uploads/d7856c2c2a2f1c82_orig.jpg"
         },
         {
           "title": "Unnameable",
