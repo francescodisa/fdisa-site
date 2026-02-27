@@ -41,7 +41,10 @@ collections:
             label_singular: "Opera"
             fields:
               - { label: "Titolo", name: "title", widget: "string" }
-              - { label: "Immagine", name: "image", widget: "image" }
+              - { label: "Immagine", name: "image", widget: "image", required: false,
+                  hint: "Lascia vuoto se usi un video YouTube." }
+              - { label: "Video YouTube (URL)", name: "youtube", widget: "string", required: false,
+                  hint: "Es: https://www.youtube.com/watch?v=XXXXXXXXXXX — se presente, sostituisce l'immagine." }
               - { label: "Anno", name: "year", widget: "string" }
               - { label: "Tecnica", name: "medium", widget: "string", required: false }
 
@@ -71,6 +74,5 @@ collections:
             widget: "markdown"
             hint: >
               Incolla qui tutti gli articoli in formato libero.
-              Esempio per ogni voce: ### Titolo articolo
+              Esempio: ### Titolo articolo
               **Rivista** — 2024 — [Leggi](https://url)
-              Descrizione facoltativa.
