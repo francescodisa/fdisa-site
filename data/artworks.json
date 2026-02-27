@@ -39,7 +39,7 @@
       "description": "These visual poems are AI co-produced image sequences built through layered generative models and mixed LoRA files, where intentional parameter drift invites glitches, artifacts, and deviations to become structural. Each work follows a meditative, dreamlike logic in which meaning emerges through wandering attention, unstable identities, and the shifting boundary between perception and reality. Technical “accidents” and misread prompts are treated as part of the poem’s motion, turning machine error into atmosphere, rhythm, and thought.\n"
     },
     {
-      "title": "Francesco D'Isa, Chiara Moresco / Sineglossa / Fondazione Gramsci Bologna, ​ Via Zaccherini Alvisi 11/2, Bologna",
+      "title": "Ai Manifesta",
       "items": [
         {
           "title": "Ai manifesta",
@@ -84,6 +84,73 @@
         {
           "title": "Ai manifesta",
           "image": "/images/uploads/img-6807_orig.png"
+        }
+      ],
+      "description": "Francesco D'Isa, Chiara Moresco / Sineglossa / Fondazione Gramsci Bologna, ​ Via Zaccherini Alvisi 11/2, Bologna"
+    },
+    {
+      "title": "Errancies",
+      "description": "AI Yoga / Meet Digital Art Center, Milano, cur. Valerio Borgonuovo / Lenovo",
+      "items": [
+        {
+          "title": "Errancies",
+          "year": "2024",
+          "image": "/images/uploads/errancies3_1_orig.jpg"
+        },
+        {
+          "title": "Errancies",
+          "year": "2024",
+          "image": "/images/uploads/errancies4_1_orig.jpg"
+        },
+        {
+          "title": "Errancies",
+          "image": "/images/uploads/magnific-x71gltwr0b9tozwtgv1o-00261-2646279085_1_orig.jpg",
+          "year": "2024"
+        },
+        {
+          "title": "Errancies",
+          "image": "/images/uploads/errancies5_1_orig.jpg",
+          "year": "2024"
+        },
+        {
+          "title": "Errancies",
+          "image": "/images/uploads/magnific-kelkspees6eben6cdako-00105-3898390199_1_orig.jpg",
+          "year": "2024"
+        },
+        {
+          "title": "Errancies",
+          "image": "/images/uploads/584_orig.jpg",
+          "year": "2024"
+        },
+        {
+          "image": "/images/uploads/40_orig.jpg",
+          "year": "2024",
+          "title": "Errancies"
+        },
+        {
+          "title": "Errancies",
+          "image": "/images/uploads/197_orig.jpg",
+          "year": "2024"
+        },
+        {
+          "image": "/images/uploads/15_orig.jpg",
+          "year": "2024",
+          "title": "Errancies"
+        },
+        {
+          "title": "Errancies",
+          "image": "/images/uploads/194_orig.jpg",
+          "year": "2024"
+        },
+        {
+          "image": "/images/uploads/339_orig.jpg",
+          "title": "Errancies",
+          "year": "2024"
+        },
+        {
+          "title": "Errancies (manifesto)",
+          "year": "2024",
+          "image": "/images/uploads/ai-yoga-per-intelligenze-artistichemeet-digital-culture-center-milano.jpg"
         }
       ]
     }
