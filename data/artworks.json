@@ -13,15 +13,27 @@
   ],
   "series": [
     {
-      "title": "Prova",
+      "title": "Visual Poetry (2025) - Exhibited at Fellowshiop.xyz",
       "items": [
         {
-          "title": "Prova",
-          "image": "/images/uploads/artworks_y9ukc4uq8u2h7nzau4yh_5-1-.png"
+          "title": "Haenyeo",
+          "youtube": "https://www.youtube.com/watch?v=nRCKrdPzgHA",
+          "year": "2025"
         },
         {
-          "title": "prova 2",
-          "image": "/images/uploads/night-dark-tiny-totem-full-botanic-lcsuatr6hw63e4gdh954-2_orig.png"
+          "title": "Daodejing",
+          "youtube": "https://www.youtube.com/watch?v=FB_qaNLT-io",
+          "year": "2025"
+        },
+        {
+          "title": "Strangers",
+          "youtube": "https://www.youtube.com/watch?v=hb0T6FIb93I",
+          "year": "2025"
+        },
+        {
+          "title": "Funny Things",
+          "youtube": "https://www.youtube.com/watch?v=CS5IuFl6wC4",
+          "year": "2025"
         }
       ]
     }
