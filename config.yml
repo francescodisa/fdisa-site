@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: it
+
+collections:
+
+  - name: "content"
+    label: "Contenuti"
+    files:
+
+      - label: "Homepage"
+        name: "home"
+        file: "data/home.json"
+        fields:
+          - { label: "Immagine principale", name: "hero_image", widget: "image", required: false }
+
+      - label: "About"
+        name: "about"
+        file: "data/about.json"
+        fields:
+          - { label: "Foto profilo", name: "photo", widget: "image", required: false }
+          - label: "Biografia"
+            name: "bio"
+            widget: "list"
+            label_singular: "Paragrafo"
+            field: { label: "Testo", name: "text", widget: "text" }
+          - { label: "Email di contatto", name: "email", widget: "string" }
+
+      - label: "Artworks"
+        name: "artworks"
+        file: "data/artworks.json"
+        fields:
+          - label: "Serie"
+            name: "series"
+            widget: "list"
+            label_singular: "Serie"
+            hint: "Ogni serie ha un titolo e un gruppo di opere. Puoi avere una sola serie senza titolo per una galleria unica."
+            fields:
+              - { label: "Titolo della serie (facoltativo)", name: "title", widget: "string", required: false }
+              - label: "Opere"
+                name: "items"
+                widget: "list"
+                label_singular: "Opera"
+                fields:
+                  - { label: "Titolo", name: "title", widget: "string" }
+                  - { label: "Immagine", name: "image", widget: "image", required: false }
+                  - { label: "Video YouTube (URL)", name: "youtube", widget: "string", required: false,
+                      hint: "Se presente, sostituisce l'immagine nella lightbox." }
+                  - { label: "Anno", name: "year", widget: "string", required: false }
+                  - { label: "Tecnica", name: "medium", widget: "string", required: false }
+
+      - label: "Books"
+        name: "books"
+        file: "data/books.json"
+        fields:
+          - label: "Libri"
+            name: "items"
+            widget: "list"
+            label_singular: "Libro"
+            fields:
+              - { label: "Titolo", name: "title", widget: "string" }
+              - { label: "Copertina", name: "cover", widget: "image" }
+              - { label: "Anno", name: "year", widget: "string" }
+              - { label: "Editore", name: "publisher", widget: "string" }
+              - { label: "Genere", name: "genre", widget: "string", required: false }
+              - { label: "Descrizione", name: "description", widget: "text" }
+              - { label: "Link acquisto", name: "buy_url", widget: "string", required: false }
+
+      - label: "Articles"
+        name: "articles"
+        file: "data/articles.json"
+        fields:
+          - label: "Lista articoli (Markdown)"
+            name: "content"
+            widget: "markdown"
+            hint: >
+              Incolla qui tutti gli articoli in formato libero.
+              Esempio: ### Titolo articolo
+              **Rivista** — 2024 — [Leggi](https://url)

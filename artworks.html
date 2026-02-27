@@ -6,18 +6,117 @@
   <title>Artworks — Francesco D'Isa</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .artwork-video {
-      position: relative;
-      aspect-ratio: 16/9;
-      background: #111;
+    /* Serie */
+    .series-block {
+      margin-bottom: clamp(3rem, 7vw, 6rem);
+    }
+    .series-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    /* Griglia quadrata */
+    .artworks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+    .artwork-item {
+      background: var(--bg);
+      cursor: zoom-in;
       overflow: hidden;
     }
-    .artwork-video iframe {
+    .artwork-item .artwork-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      position: relative;
+      background: #DDD9D3;
+    }
+    .artwork-item .artwork-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .artwork-item:hover .artwork-thumb img {
+      transform: scale(1.04);
+    }
+    /* Video: mostra thumbnail quadrata, non embed inline */
+    .artwork-item .artwork-thumb .video-thumb-overlay {
       position: absolute;
       inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.18);
+      transition: background 0.3s;
+    }
+    .artwork-item:hover .artwork-thumb .video-thumb-overlay {
+      background: rgba(0,0,0,0.08);
+    }
+    .play-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(248,246,242,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .play-icon::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 0 8px 16px;
+      border-color: transparent transparent transparent #111110;
+      margin-left: 3px;
+    }
+    .artwork-caption {
+      padding: 0.75rem 1rem 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+    .artwork-caption h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+    .artwork-caption span {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Lightbox esteso per video */
+    .lightbox { flex-direction: column; gap: 1rem; }
+    .lightbox img { max-width: 90vw; max-height: 80vh; object-fit: contain; }
+    .lightbox .lb-video {
+      width: min(90vw, 900px);
+      aspect-ratio: 16/9;
+    }
+    .lightbox .lb-video iframe {
       width: 100%;
       height: 100%;
       border: none;
+    }
+    .lightbox .lb-caption {
+      color: rgba(248,246,242,0.6);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
     }
   </style>
 </head>
@@ -36,18 +135,26 @@
       </ul>
     </div>
   </nav>
+
   <main>
     <div class="container">
       <header class="page-header"><h1>Artworks</h1></header>
-      <div class="artworks-grid" id="artworks-grid">
-        <div style="padding:3rem;color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;background:var(--bg)">Caricamento…</div>
+      <div id="artworks-root">
+        <p style="color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase">Caricamento…</p>
       </div>
     </div>
   </main>
 
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox" role="dialog">
     <button class="lightbox-close" aria-label="Chiudi">✕</button>
-    <img src="" alt="" />
+    <img src="" alt="" id="lb-img" style="display:none" />
+    <div class="lb-video" id="lb-video" style="display:none">
+      <iframe id="lb-iframe" src="" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+    </div>
+    <p class="lb-caption" id="lb-caption"></p>
   </div>
 
   <footer>
@@ -70,60 +177,92 @@
       return m ? m[1] : null;
     }
 
-    fetch('data/artworks.json').then(r => r.json()).then(data => {
-      const grid  = document.getElementById('artworks-grid');
-      const items = data.items || [];
+    function youtubeThumbnail(id) {
+      return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    }
 
-      if (!items.length) {
-        grid.innerHTML = '<div style="padding:3rem;color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;background:var(--bg)">Nessuna opera ancora.</div>';
+    /* Lightbox */
+    const lb       = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lb-img');
+    const lbVideo  = document.getElementById('lb-video');
+    const lbIframe = document.getElementById('lb-iframe');
+    const lbCap    = document.getElementById('lb-caption');
+
+    function openLightbox(op) {
+      const vid = youtubeId(op.youtube);
+      if (vid) {
+        lbImg.style.display   = 'none';
+        lbVideo.style.display = 'block';
+        lbIframe.src = `https://www.youtube.com/embed/${vid}?autoplay=1`;
+      } else {
+        lbVideo.style.display  = 'none';
+        lbIframe.src           = '';
+        lbImg.style.display    = 'block';
+        lbImg.src              = op.image || '';
+      }
+      lbCap.textContent = [op.title, op.year, op.medium].filter(Boolean).join(' — ');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      lbIframe.src = '';
+      lbImg.src    = '';
+    }
+
+    lb.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    /* Render */
+    fetch('data/artworks.json').then(r => r.json()).then(data => {
+      const root   = document.getElementById('artworks-root');
+      const series = data.series || [];
+
+      if (!series.length || !series.some(s => s.items && s.items.length)) {
+        root.innerHTML = '<p style="color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase">Nessuna opera ancora.</p>';
         return;
       }
 
-      grid.innerHTML = items.map(op => {
-        const vid = youtubeId(op.youtube);
-        const media = vid
-          ? `<div class="artwork-video">
-               <iframe src="https://www.youtube.com/embed/${vid}"
-                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                 allowfullscreen loading="lazy" title="${op.title}"></iframe>
-             </div>`
-          : `<img src="${op.image || ''}" alt="${op.title}"
-               onerror="this.style.background='#DDD9D3';this.style.aspectRatio='1';this.removeAttribute('src')"
-               data-lightbox />`;
-
-        return `<div class="artwork-item fade-in" data-has-video="${vid ? '1' : '0'}">
-          ${media}
-          <div class="artwork-caption">
-            <h3>${op.title}</h3>
-            <span>${[op.year, op.medium].filter(Boolean).join(' — ')}</span>
-          </div>
+      root.innerHTML = series.map(serie => {
+        if (!serie.items || !serie.items.length) return '';
+        const titleHtml = serie.title
+          ? `<h2 class="series-title">${serie.title}</h2>` : '';
+        const grid = `<div class="artworks-grid">
+          ${serie.items.map((op, i) => {
+            const vid  = youtubeId(op.youtube);
+            const thumb = vid
+              ? `<img src="${youtubeThumbnail(vid)}" alt="${op.title}" loading="lazy"
+                      onerror="this.src='https://img.youtube.com/vi/${vid}/hqdefault.jpg'" />
+                 <div class="video-thumb-overlay"><div class="play-icon"></div></div>`
+              : `<img src="${op.image || ''}" alt="${op.title}" loading="lazy"
+                      onerror="this.style.opacity='.3'" />`;
+            return `<div class="artwork-item fade-in" data-index="${i}">
+              <div class="artwork-thumb">${thumb}</div>
+              <div class="artwork-caption">
+                <h3>${op.title}</h3>
+                <span>${[op.year, op.medium].filter(Boolean).join(' — ')}</span>
+              </div>
+            </div>`;
+          }).join('')}
         </div>`;
+        return `<div class="series-block">${titleHtml}${grid}</div>`;
       }).join('');
 
+      /* fade-in */
       setTimeout(() => document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')), 50);
 
-      /* lightbox solo per immagini, non per video */
-      const lb    = document.getElementById('lightbox');
-      const lbImg = lb.querySelector('img');
-      grid.querySelectorAll('.artwork-item[data-has-video="0"]').forEach(item => {
-        item.style.cursor = 'zoom-in';
-        item.addEventListener('click', () => {
-          const src = item.querySelector('img') && item.querySelector('img').src;
-          if (!src) return;
-          lbImg.src = src;
-          lb.classList.add('open');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-      lb.querySelector('.lightbox-close').addEventListener('click', () => {
-        lb.classList.remove('open'); document.body.style.overflow = '';
-      });
-      lb.addEventListener('click', e => {
-        if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+      /* click → lightbox: ricostruiamo la lista piatta di tutte le opere */
+      const allOps = series.flatMap(s => s.items || []);
+      root.querySelectorAll('.artwork-item').forEach((el, i) => {
+        el.addEventListener('click', () => openLightbox(allOps[i]));
       });
 
     }).catch(() => {
-      document.getElementById('artworks-grid').innerHTML = '<div style="padding:3rem;color:var(--muted)">Errore nel caricamento.</div>';
+      document.getElementById('artworks-root').innerHTML =
+        '<p style="color:var(--muted)">Errore nel caricamento.</p>';
     });
   </script>
 </body>
