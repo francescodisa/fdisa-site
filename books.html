@@ -4,17 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Books — Francesco D'Isa</title>
-  <meta name="description" content="Libri di Francesco D'Isa — romanzi, saggi, racconti." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
   <nav>
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">Francesco D'Isa</a>
-      <button class="nav-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -25,73 +21,14 @@
       </ul>
     </div>
   </nav>
-
   <main>
     <div class="container">
-
-      <header class="page-header">
-        <h1>Books</h1>
-      </header>
-
-      <!-- LISTA LIBRI
-           Per ogni libro: duplica un blocco .book-item
-           Immagine copertina: /images/books/nomefile.jpg
-           Dimensioni consigliate copertina: 400×550px -->
-      <div class="books-list">
-
-        <article class="book-item fade-in">
-          <div class="book-cover">
-            <img src="images/books/libro-01.jpg" alt="Copertina libro 1"
-                 onerror="this.style.background='#DDD9D3';this.style.minHeight='220px';this.removeAttribute('src')" />
-          </div>
-          <div class="book-info">
-            <h2>Titolo del libro</h2>
-            <p class="book-meta">Anno — Editore — Genere</p>
-            <p>
-              Descrizione del libro. Sostituisci questo testo con la sinossi o il testo
-              di presentazione che preferisci. Puoi scrivere qualche paragrafo per raccontare
-              l'opera al lettore.
-            </p>
-            <a class="btn-link" href="#" target="_blank" rel="noopener">Acquista</a>
-          </div>
-        </article>
-
-        <article class="book-item fade-in">
-          <div class="book-cover">
-            <img src="images/books/libro-02.jpg" alt="Copertina libro 2"
-                 onerror="this.style.background='#CCC8C2';this.style.minHeight='220px';this.removeAttribute('src')" />
-          </div>
-          <div class="book-info">
-            <h2>Secondo libro</h2>
-            <p class="book-meta">Anno — Editore — Genere</p>
-            <p>
-              Descrizione del secondo libro. Puoi aggiungere link a schede editore,
-              recensioni, o pagine di acquisto.
-            </p>
-            <a class="btn-link" href="#" target="_blank" rel="noopener">Acquista</a>
-          </div>
-        </article>
-
-        <article class="book-item fade-in">
-          <div class="book-cover">
-            <img src="images/books/libro-03.jpg" alt="Copertina libro 3"
-                 onerror="this.style.background='#B8B4AE';this.style.minHeight='220px';this.removeAttribute('src')" />
-          </div>
-          <div class="book-info">
-            <h2>Terzo libro</h2>
-            <p class="book-meta">Anno — Editore — Genere</p>
-            <p>
-              Descrizione del terzo libro.
-            </p>
-            <a class="btn-link" href="#" target="_blank" rel="noopener">Acquista</a>
-          </div>
-        </article>
-
-      </div><!-- /books-list -->
-
+      <header class="page-header"><h1>Books</h1></header>
+      <div class="books-list" id="books-list">
+        <div style="color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase">Caricamento…</div>
+      </div>
     </div>
   </main>
-
   <footer>
     <div class="footer-inner">
       <small>© <span id="yr"></span> Francesco D'Isa</small>
@@ -101,8 +38,25 @@
       </ul>
     </div>
   </footer>
-
   <script src="js/main.js"></script>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    fetch('data/books.json').then(r=>r.json()).then(data=>{
+      const list=document.getElementById('books-list');
+      const items=data.items||[];
+      if(!items.length){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase">Nessun libro ancora.</div>';return;}
+      list.innerHTML=items.map(b=>`
+        <article class="book-item fade-in">
+          <div class="book-cover"><img src="${b.cover}" alt="${b.title}" onerror="this.style.background='#DDD9D3';this.style.minHeight='220px';this.removeAttribute('src')"/></div>
+          <div class="book-info">
+            <h2>${b.title}</h2>
+            <p class="book-meta">${[b.year,b.publisher,b.genre].filter(Boolean).join(' — ')}</p>
+            <p>${b.description||''}</p>
+            ${b.buy_url?`<a class="btn-link" href="${b.buy_url}" target="_blank" rel="noopener">Acquista</a>`:''}
+          </div>
+        </article>`).join('');
+      setTimeout(()=>document.querySelectorAll('.fade-in').forEach(el=>el.classList.add('visible')),50);
+    }).catch(()=>{document.getElementById('books-list').innerHTML='<div style="color:var(--muted)">Errore nel caricamento.</div>';});
+  </script>
 </body>
 </html>
