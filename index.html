@@ -39,13 +39,8 @@
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
-      <div class="hero-image">
-        <!-- Sostituisci con la tua immagine principale. Dimensioni consigliate: 800×1000px -->
-        <img
-          src="images/hero.jpg"
-          alt="Francesco D'Isa"
-          onerror="this.style.background='#DDD9D3';this.style.aspectRatio='4/5';this.removeAttribute('src')"
-        />
+      <div class="hero-image" id="hero-image-wrap">
+        <div id="hero-placeholder" style="width:100%;aspect-ratio:4/5;background:#DDD9D3"></div>
       </div>
     </div>
   </main>
@@ -61,16 +56,20 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    fetch('data/home.json').then(r=>r.json()).then(data=>{
+      if(data.hero_image){
+        document.getElementById('hero-image-wrap').innerHTML =
+          `<img src="${data.hero_image}" alt="Francesco D'Isa" style="width:100%;aspect-ratio:4/5;object-fit:cover"/>`;
+      }
+    }).catch(()=>{});
+  </script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
+    if(window.netlifyIdentity){
+      window.netlifyIdentity.on("init",user=>{
+        if(!user){window.netlifyIdentity.on("login",()=>{document.location.href="/admin/";});}
       });
     }
   </script>

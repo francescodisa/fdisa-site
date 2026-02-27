@@ -13,6 +13,12 @@ collections:
     label: "Contenuti"
     files:
 
+      - label: "Homepage"
+        name: "home"
+        file: "data/home.json"
+        fields:
+          - { label: "Immagine principale", name: "hero_image", widget: "image", required: false }
+
       - label: "About"
         name: "about"
         file: "data/about.json"
