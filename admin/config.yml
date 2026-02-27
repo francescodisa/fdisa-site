@@ -39,9 +39,9 @@ collections:
             name: "series"
             widget: "list"
             label_singular: "Serie"
-            hint: "Ogni serie ha un titolo e un gruppo di opere. Puoi avere una sola serie senza titolo per una galleria unica."
             fields:
               - { label: "Titolo della serie (facoltativo)", name: "title", widget: "string", required: false }
+              - { label: "Descrizione della serie (facoltativa)", name: "description", widget: "text", required: false }
               - label: "Opere"
                 name: "items"
                 widget: "list"
