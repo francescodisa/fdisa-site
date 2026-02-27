@@ -35,18 +35,24 @@ collections:
         name: "artworks"
         file: "data/artworks.json"
         fields:
-          - label: "Opere"
-            name: "items"
+          - label: "Serie"
+            name: "series"
             widget: "list"
-            label_singular: "Opera"
+            label_singular: "Serie"
+            hint: "Ogni serie ha un titolo e un gruppo di opere. Puoi avere una sola serie senza titolo per una galleria unica."
             fields:
-              - { label: "Titolo", name: "title", widget: "string" }
-              - { label: "Immagine", name: "image", widget: "image", required: false,
-                  hint: "Lascia vuoto se usi un video YouTube." }
-              - { label: "Video YouTube (URL)", name: "youtube", widget: "string", required: false,
-                  hint: "Es: https://www.youtube.com/watch?v=XXXXXXXXXXX — se presente, sostituisce l'immagine." }
-              - { label: "Anno", name: "year", widget: "string" }
-              - { label: "Tecnica", name: "medium", widget: "string", required: false }
+              - { label: "Titolo della serie (facoltativo)", name: "title", widget: "string", required: false }
+              - label: "Opere"
+                name: "items"
+                widget: "list"
+                label_singular: "Opera"
+                fields:
+                  - { label: "Titolo", name: "title", widget: "string" }
+                  - { label: "Immagine", name: "image", widget: "image", required: false }
+                  - { label: "Video YouTube (URL)", name: "youtube", widget: "string", required: false,
+                      hint: "Se presente, sostituisce l'immagine nella lightbox." }
+                  - { label: "Anno", name: "year", widget: "string", required: false }
+                  - { label: "Tecnica", name: "medium", widget: "string", required: false }
 
       - label: "Books"
         name: "books"
