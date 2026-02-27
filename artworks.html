@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Artworks — Francesco D'Isa</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .artwork-video {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #111;
+      overflow: hidden;
+    }
+    .artwork-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -29,10 +44,12 @@
       </div>
     </div>
   </main>
+
   <div id="lightbox" class="lightbox" role="dialog">
     <button class="lightbox-close" aria-label="Chiudi">✕</button>
     <img src="" alt="" />
   </div>
+
   <footer>
     <div class="footer-inner">
       <small>© <span id="yr"></span> Francesco D'Isa</small>
@@ -42,23 +59,72 @@
       </ul>
     </div>
   </footer>
+
   <script src="js/main.js"></script>
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
-    fetch('data/artworks.json').then(r=>r.json()).then(data=>{
-      const grid=document.getElementById('artworks-grid');
-      const items=data.items||[];
-      if(!items.length){grid.innerHTML='<div style="padding:3rem;color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;background:var(--bg)">Nessuna opera ancora.</div>';return;}
-      grid.innerHTML=items.map(op=>`<div class="artwork-item fade-in"><img src="${op.image}" alt="${op.title}" onerror="this.style.background='#DDD9D3';this.style.aspectRatio='1';this.removeAttribute('src')"/><div class="artwork-caption"><h3>${op.title}</h3><span>${[op.year,op.medium].filter(Boolean).join(' — ')}</span></div></div>`).join('');
-      setTimeout(()=>document.querySelectorAll('.fade-in').forEach(el=>el.classList.add('visible')),50);
-      const lb=document.getElementById('lightbox');
-      const lbImg=lb.querySelector('img');
-      grid.querySelectorAll('.artwork-item').forEach(item=>{
-        item.addEventListener('click',()=>{lbImg.src=item.querySelector('img').src||'';lb.classList.add('open');document.body.style.overflow='hidden';});
+
+    function youtubeId(url) {
+      if (!url) return null;
+      const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+      return m ? m[1] : null;
+    }
+
+    fetch('data/artworks.json').then(r => r.json()).then(data => {
+      const grid  = document.getElementById('artworks-grid');
+      const items = data.items || [];
+
+      if (!items.length) {
+        grid.innerHTML = '<div style="padding:3rem;color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;background:var(--bg)">Nessuna opera ancora.</div>';
+        return;
+      }
+
+      grid.innerHTML = items.map(op => {
+        const vid = youtubeId(op.youtube);
+        const media = vid
+          ? `<div class="artwork-video">
+               <iframe src="https://www.youtube.com/embed/${vid}"
+                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                 allowfullscreen loading="lazy" title="${op.title}"></iframe>
+             </div>`
+          : `<img src="${op.image || ''}" alt="${op.title}"
+               onerror="this.style.background='#DDD9D3';this.style.aspectRatio='1';this.removeAttribute('src')"
+               data-lightbox />`;
+
+        return `<div class="artwork-item fade-in" data-has-video="${vid ? '1' : '0'}">
+          ${media}
+          <div class="artwork-caption">
+            <h3>${op.title}</h3>
+            <span>${[op.year, op.medium].filter(Boolean).join(' — ')}</span>
+          </div>
+        </div>`;
+      }).join('');
+
+      setTimeout(() => document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')), 50);
+
+      /* lightbox solo per immagini, non per video */
+      const lb    = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('img');
+      grid.querySelectorAll('.artwork-item[data-has-video="0"]').forEach(item => {
+        item.style.cursor = 'zoom-in';
+        item.addEventListener('click', () => {
+          const src = item.querySelector('img') && item.querySelector('img').src;
+          if (!src) return;
+          lbImg.src = src;
+          lb.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        });
       });
-      lb.querySelector('.lightbox-close').addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow='';});
-      lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='';}});
-    }).catch(()=>{document.getElementById('artworks-grid').innerHTML='<div style="padding:3rem;color:var(--muted)">Errore nel caricamento.</div>';});
+      lb.querySelector('.lightbox-close').addEventListener('click', () => {
+        lb.classList.remove('open'); document.body.style.overflow = '';
+      });
+      lb.addEventListener('click', e => {
+        if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+      });
+
+    }).catch(() => {
+      document.getElementById('artworks-grid').innerHTML = '<div style="padding:3rem;color:var(--muted)">Errore nel caricamento.</div>';
+    });
   </script>
 </body>
 </html>
