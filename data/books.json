@@ -7,6 +7,38 @@
       "description": "Saggio che interroga l’impatto delle IA generative sull’arte e sulla percezione, discutendo anche statuto autoriale, confini dell’espressione e questioni di proprietà intellettuale. 160 pagine; ISBN 9791259980601.",
       "buy_url": "https://amzn.eu/d/0eItNURJ",
       "publisher": "Luca Sossella"
+    },
+    {
+      "title": "Sunyata",
+      "year": "2023",
+      "publisher": "Eris Edizioni",
+      "cover": "/images/uploads/368011508-1355115328761958-4530481469199517583-n-800x1400-1_orig.jpg",
+      "description": "Graphic novel onirico in cui testo e immagini dialogano in un viaggio tra identità, simboli e visioni; la parte grafica è realizzata con IA generative, e la narrazione segue una ragazza alla ricerca di un’altra, forse di se stessa. 120 pagine; ISBN 9791280495723.",
+      "buy_url": "https://amzn.eu/d/0gJE0I19"
+    },
+    {
+      "title": "Introduzione alla meditazione",
+      "cover": "/images/uploads/covermed_orig.jpeg",
+      "year": "2023",
+      "publisher": "Edizioni Tlon",
+      "description": "Introduzione laica alla meditazione, pensata per chiarire cosa si intenda davvero con “meditare” e quale sia il suo valore filosofico; ripercorre pratiche e tradizioni diverse per orientarsi tra metodi spesso discordanti. 144 pagine; ISBN 9791255540113.",
+      "buy_url": "https://amzn.eu/d/05oQOuCo"
+    },
+    {
+      "title": "L’assurda evidenza. Un diario filosofico",
+      "cover": "/images/uploads/273172755-2210238445799357-7428027727707937175-n_orig.jpg",
+      "year": "2022",
+      "description": "Diario esistenziale e filosofico che intreccia esperienza vissuta e riflessione esistenziale; muove tra filosofia occidentale e pensiero buddhista/Zen, sollevando domande sul dolore e la natura della realtà. ISBN 9788831498463",
+      "buy_url": "https://amzn.eu/d/0ggABTDz",
+      "publisher": "Edizioni Tlon"
+    },
+    {
+      "title": "I.",
+      "cover": "/images/uploads/_2230569.jpeg",
+      "year": "2011",
+      "publisher": "Nottetempo",
+      "description": "Libro illustrato costruito come una ricerca identitaria; “I.” cambia forma di tavola in tavola e inseguendo una risposta a “chi o cosa sono?” attraversa registri che chiamano in causa amore, sesso, scienza e cosmologia, con un montaggio grafico di materiali eterogenei. 320 pagine; ISBN 9788874523351.",
+      "buy_url": "https://amzn.eu/d/01bHfCZE"
     }
   ]
 }
