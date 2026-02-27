@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books — Francesco D'Isa</title>
+  <meta name="description" content="Libri di Francesco D'Isa — romanzi, saggi, racconti." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Francesco D'Isa</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="artworks.html">Artworks</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">Videos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <header class="page-header">
+        <h1>Books</h1>
+      </header>
+
+      <!-- LISTA LIBRI
+           Per ogni libro: duplica un blocco .book-item
+           Immagine copertina: /images/books/nomefile.jpg
+           Dimensioni consigliate copertina: 400×550px -->
+      <div class="books-list">
+
+        <article class="book-item fade-in">
+          <div class="book-cover">
+            <img src="images/books/libro-01.jpg" alt="Copertina libro 1"
+                 onerror="this.style.background='#DDD9D3';this.style.minHeight='220px';this.removeAttribute('src')" />
+          </div>
+          <div class="book-info">
+            <h2>Titolo del libro</h2>
+            <p class="book-meta">Anno — Editore — Genere</p>
+            <p>
+              Descrizione del libro. Sostituisci questo testo con la sinossi o il testo
+              di presentazione che preferisci. Puoi scrivere qualche paragrafo per raccontare
+              l'opera al lettore.
+            </p>
+            <a class="btn-link" href="#" target="_blank" rel="noopener">Acquista</a>
+          </div>
+        </article>
+
+        <article class="book-item fade-in">
+          <div class="book-cover">
+            <img src="images/books/libro-02.jpg" alt="Copertina libro 2"
+                 onerror="this.style.background='#CCC8C2';this.style.minHeight='220px';this.removeAttribute('src')" />
+          </div>
+          <div class="book-info">
+            <h2>Secondo libro</h2>
+            <p class="book-meta">Anno — Editore — Genere</p>
+            <p>
+              Descrizione del secondo libro. Puoi aggiungere link a schede editore,
+              recensioni, o pagine di acquisto.
+            </p>
+            <a class="btn-link" href="#" target="_blank" rel="noopener">Acquista</a>
+          </div>
+        </article>
+
+        <article class="book-item fade-in">
+          <div class="book-cover">
+            <img src="images/books/libro-03.jpg" alt="Copertina libro 3"
+                 onerror="this.style.background='#B8B4AE';this.style.minHeight='220px';this.removeAttribute('src')" />
+          </div>
+          <div class="book-info">
+            <h2>Terzo libro</h2>
+            <p class="book-meta">Anno — Editore — Genere</p>
+            <p>
+              Descrizione del terzo libro.
+            </p>
+            <a class="btn-link" href="#" target="_blank" rel="noopener">Acquista</a>
+          </div>
+        </article>
+
+      </div><!-- /books-list -->
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <small>© <span id="yr"></span> Francesco D'Isa</small>
+      <ul class="footer-links">
+        <li><a href="about.html">Contact</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Francesco D'Isa</title>
+  <meta name="description" content="Francesco D'Isa, artista e scrittore fiorentino." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Francesco D'Isa</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="artworks.html">Artworks</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">Videos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <header class="page-header">
+        <h1>About</h1>
+      </header>
+
+      <div class="about-grid fade-in">
+        <div class="about-photo">
+          <!-- Sostituisci con il tuo ritratto. Dimensioni consigliate: 600×800px -->
+          <img
+            src="images/about.jpg"
+            alt="Francesco D'Isa"
+            onerror="this.style.background='#DDD9D3';this.style.aspectRatio='3/4';this.removeAttribute('src')"
+          />
+        </div>
+        <div class="about-bio">
+          <!-- Modifica qui il tuo testo biografico -->
+          <p>
+            Francesco D'Isa è un artista e scrittore fiorentino. La sua ricerca si muove
+            tra pittura digitale, filosofia e narrativa, esplorando i confini tra
+            percezione, linguaggio e realtà.
+          </p>
+          <p>
+            Ha esposto in Italia e all'estero, collaborato con riviste e testate culturali,
+            e pubblicato romanzi, saggi e racconti tradotti in diverse lingue.
+          </p>
+          <p>
+            Tra le sue mostre recenti si ricordano [inserisci qui]. Tra le sue pubblicazioni,
+            [inserisci qui].
+          </p>
+          <p>
+            Per contatti, collaborazioni o informazioni sulla sua opera:<br>
+            <a href="mailto:info@francescodisa.com" style="border-bottom:1px solid currentColor;">info@francescodisa.com</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <small>© <span id="yr"></span> Francesco D'Isa</small>
+      <ul class="footer-links">
+        <li><a href="about.html">Contact</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

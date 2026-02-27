@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Francesco D'Isa</title>
+  <meta name="description" content="Francesco D'Isa — artista e scrittore. Opere, libri, articoli." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Francesco D'Isa</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="artworks.html">Artworks</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">Videos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Francesco<br><em>D'Isa</em></h1>
+        <p class="hero-sub">Artist &amp; Writer — Florence</p>
+        <ul class="hero-nav-links">
+          <li><a href="artworks.html">Artworks</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">Videos</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="hero-image">
+        <!-- Sostituisci con la tua immagine principale. Dimensioni consigliate: 800×1000px -->
+        <img
+          src="images/hero.jpg"
+          alt="Francesco D'Isa"
+          onerror="this.style.background='#DDD9D3';this.style.aspectRatio='4/5';this.removeAttribute('src')"
+        />
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <small>© <span id="yr"></span> Francesco D'Isa</small>
+      <ul class="footer-links">
+        <li><a href="about.html">Contact</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

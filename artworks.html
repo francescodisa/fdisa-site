@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artworks — Francesco D'Isa</title>
+  <meta name="description" content="Opere di Francesco D'Isa — pittura digitale e arte visiva." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Francesco D'Isa</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="artworks.html">Artworks</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">Videos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <header class="page-header">
+        <h1>Artworks</h1>
+      </header>
+
+      <!-- GRIGLIA OPERE
+           Per aggiungere un'opera: duplica un blocco .artwork-item
+           Sostituisci src dell'immagine, titolo e anno.
+           Le immagini vanno nella cartella /images/artworks/
+           Dimensioni consigliate: minimo 800×800px -->
+      <div class="artworks-grid">
+
+        <div class="artwork-item fade-in">
+          <img src="images/artworks/opera-01.jpg" alt="Titolo opera 1"
+               onerror="this.style.background='#DDD9D3';this.style.aspectRatio='1';this.removeAttribute('src')" />
+          <div class="artwork-caption">
+            <h3>Titolo opera 1</h3>
+            <span>2024 — Digitale</span>
+          </div>
+        </div>
+
+        <div class="artwork-item fade-in">
+          <img src="images/artworks/opera-02.jpg" alt="Titolo opera 2"
+               onerror="this.style.background='#CCC8C2';this.style.aspectRatio='1';this.removeAttribute('src')" />
+          <div class="artwork-caption">
+            <h3>Titolo opera 2</h3>
+            <span>2023 — Pittura digitale</span>
+          </div>
+        </div>
+
+        <div class="artwork-item fade-in">
+          <img src="images/artworks/opera-03.jpg" alt="Titolo opera 3"
+               onerror="this.style.background='#B8B4AE';this.style.aspectRatio='1';this.removeAttribute('src')" />
+          <div class="artwork-caption">
+            <h3>Titolo opera 3</h3>
+            <span>2023 — Digitale</span>
+          </div>
+        </div>
+
+        <div class="artwork-item fade-in">
+          <img src="images/artworks/opera-04.jpg" alt="Titolo opera 4"
+               onerror="this.style.background='#DDD9D3';this.style.aspectRatio='1';this.removeAttribute('src')" />
+          <div class="artwork-caption">
+            <h3>Titolo opera 4</h3>
+            <span>2022 — Digitale</span>
+          </div>
+        </div>
+
+        <div class="artwork-item fade-in">
+          <img src="images/artworks/opera-05.jpg" alt="Titolo opera 5"
+               onerror="this.style.background='#CCC8C2';this.style.aspectRatio='1';this.removeAttribute('src')" />
+          <div class="artwork-caption">
+            <h3>Titolo opera 5</h3>
+            <span>2022 — Pittura digitale</span>
+          </div>
+        </div>
+
+        <div class="artwork-item fade-in">
+          <img src="images/artworks/opera-06.jpg" alt="Titolo opera 6"
+               onerror="this.style.background='#B8B4AE';this.style.aspectRatio='1';this.removeAttribute('src')" />
+          <div class="artwork-caption">
+            <h3>Titolo opera 6</h3>
+            <span>2021 — Digitale</span>
+          </div>
+        </div>
+
+      </div><!-- /artworks-grid -->
+
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Artwork viewer">
+    <button class="lightbox-close" aria-label="Chiudi">✕</button>
+    <img src="" alt="Opera ingrandita" />
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <small>© <span id="yr"></span> Francesco D'Isa</small>
+      <ul class="footer-links">
+        <li><a href="about.html">Contact</a></li>
+        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

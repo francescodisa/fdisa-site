@@ -1,0 +1,71 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Media files (immagini uploadate dal CMS)
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: it
+
+collections:
+
+  # ---- ABOUT ----
+  - name: "about"
+    label: "About"
+    files:
+      - label: "Pagina About"
+        name: "about"
+        file: "data/about.json"
+        fields:
+          - { label: "Foto profilo", name: "photo", widget: "image", required: false }
+          - { label: "Biografia (paragrafi)", name: "bio", widget: "list",
+              field: { label: "Paragrafo", name: "text", widget: "text" } }
+          - { label: "Email di contatto", name: "email", widget: "string" }
+
+  # ---- ARTWORKS ----
+  - name: "artworks"
+    label: "Artworks"
+    label_singular: "Opera"
+    folder: "data/artworks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Immagine", name: "image", widget: "image" }
+      - { label: "Anno", name: "year", widget: "string" }
+      - { label: "Tecnica / Medium", name: "medium", widget: "string", required: false }
+      - { label: "Descrizione", name: "description", widget: "text", required: false }
+      - { label: "Ordine (numero)", name: "order", widget: "number", default: 0 }
+
+  # ---- BOOKS ----
+  - name: "books"
+    label: "Books"
+    label_singular: "Libro"
+    folder: "data/books"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Copertina", name: "cover", widget: "image" }
+      - { label: "Anno", name: "year", widget: "string" }
+      - { label: "Editore", name: "publisher", widget: "string" }
+      - { label: "Genere", name: "genre", widget: "string", required: false }
+      - { label: "Descrizione", name: "description", widget: "markdown" }
+      - { label: "Link acquisto", name: "buy_url", widget: "string", required: false }
+      - { label: "Ordine (numero)", name: "order", widget: "number", default: 0 }
+
+  # ---- ARTICLES ----
+  - name: "articles"
+    label: "Articles"
+    label_singular: "Articolo"
+    folder: "data/articles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Anno", name: "year", widget: "string" }
+      - { label: "Rivista / Testata", name: "source", widget: "string" }
+      - { label: "URL articolo", name: "url", widget: "string" }
+      - { label: "Sommario (facoltativo)", name: "excerpt", widget: "text", required: false }
+      - { label: "Ordine / data sort", name: "order", widget: "number", default: 0 }
