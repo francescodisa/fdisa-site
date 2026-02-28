@@ -417,6 +417,42 @@
           "year": "2018"
         }
       ]
+    },
+    {
+      "title": "Sliced Art",
+      "description": "Sliced Art: Art Sold by the Slice\n",
+      "items": [
+        {
+          "title": "Sliced Art",
+          "image": "/images/uploads/7842047_orig.jpeg",
+          "year": "2012"
+        },
+        {
+          "title": "Sliced Art",
+          "image": "/images/uploads/2075441_orig.jpeg",
+          "year": "2012"
+        },
+        {
+          "title": "Sliced Art",
+          "image": "/images/uploads/1298544_orig.jpeg",
+          "year": "2012"
+        },
+        {
+          "title": "Sliced Art",
+          "image": "/images/uploads/6397673_orig.jpeg",
+          "year": "2012"
+        },
+        {
+          "title": "Sliced Art",
+          "year": "2012",
+          "image": "/images/uploads/6397673_orig.jpeg"
+        },
+        {
+          "title": "Sliced Art",
+          "year": "2012",
+          "image": "/images/uploads/1463974_orig.jpeg"
+        }
+      ]
     }
   ]
 }
