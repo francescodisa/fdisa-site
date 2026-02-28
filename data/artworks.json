@@ -21,11 +21,6 @@
           "year": "2025"
         },
         {
-          "title": "Daodejing",
-          "youtube": "https://youtu.be/FB_qaNLT-io?si=xnQNmgugAqKxkcXt",
-          "year": "2025"
-        },
-        {
           "title": "Strangers",
           "youtube": "https://www.youtube.com/watch?v=hb0T6FIb93I",
           "year": "2025"
@@ -33,6 +28,11 @@
         {
           "title": "Funny Things",
           "youtube": "https://www.youtube.com/watch?v=CS5IuFl6wC4",
+          "year": "2025"
+        },
+        {
+          "youtube": "https://youtu.be/FB_qaNLT-io?si=xnQNmgugAqKxkcXt",
+          "title": "Daodejing",
           "year": "2025"
         }
       ],
