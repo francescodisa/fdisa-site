@@ -165,7 +165,18 @@
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    function youtubeId(url) {
+    function setThumb(img, vid, attempt) {
+      const sizes = ['hqdefault', 'mqdefault', 'sddefault', 'default'];
+      img.onerror = function() {
+        attempt++;
+        if (attempt < sizes.length) {
+          img.src = `https://img.youtube.com/vi/${vid}/${sizes[attempt]}.jpg`;
+        } else {
+          img.style.display = 'none';
+        }
+      };
+      img.src = `https://img.youtube.com/vi/${vid}/${sizes[attempt]}.jpg`;
+    }
       if (!url) return null;
       const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
       return m ? m[1] : null;
@@ -231,13 +242,7 @@
           ${serie.items.map(op => {
             const vid = youtubeId(op.youtube);
             const thumb = vid
-              ? `<img src="https://img.youtube.com/vi/${vid}/maxresdefault.jpg"
-                      alt="${op.title}" loading="lazy"
-                      onerror="
-                        if(this.dataset.try==='1'){this.dataset.try='2';this.src='https://img.youtube.com/vi/${vid}/mqdefault.jpg';}
-                        else if(this.dataset.try==='2'){this.dataset.try='3';this.src='https://img.youtube.com/vi/${vid}/default.jpg';}
-                      "
-                      data-try="1" />
+              ? `<img data-ytid="${vid}" alt="${op.title}" loading="lazy" />
                  <div class="video-thumb-overlay"><div class="play-icon"></div></div>`
               : `<img src="${op.image || ''}" alt="${op.title}" loading="lazy" />`;
             return `<div class="artwork-item fade-in">
@@ -253,7 +258,12 @@
         return `<div class="series-block">${headerHtml}${grid}</div>`;
       }).join('');
 
-      setTimeout(() => document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')), 50);
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+        document.querySelectorAll('img[data-ytid]').forEach(img => {
+          setThumb(img, img.dataset.ytid, 0);
+        });
+      }, 50);
 
       const allOps = series.flatMap(s => s.items || []);
       root.querySelectorAll('.artwork-item').forEach((el, i) => {
