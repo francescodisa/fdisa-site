@@ -75,6 +75,16 @@ collections:
         name: "articles"
         file: "data/articles.json"
         fields:
+          - label: "Notebook"
+            name: "notebook"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Testo introduttivo", name: "text", widget: "text", required: false,
+                  hint: "Appare sopra la lista articoli, con il link al notebook." }
+              - { label: "URL del notebook", name: "url", widget: "string", required: false }
+              - { label: "Testo del link", name: "link_label", widget: "string", required: false,
+                  default: "Open notebook" }
           - label: "Lista articoli (Markdown)"
             name: "content"
             widget: "markdown"
