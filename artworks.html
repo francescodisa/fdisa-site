@@ -233,7 +233,11 @@
             const thumb = vid
               ? `<img src="https://img.youtube.com/vi/${vid}/maxresdefault.jpg"
                       alt="${op.title}" loading="lazy"
-                      onerror="this.src='https://img.youtube.com/vi/${vid}/hqdefault.jpg'" />
+                      onerror="
+                        if(this.dataset.try==='1'){this.dataset.try='2';this.src='https://img.youtube.com/vi/${vid}/mqdefault.jpg';}
+                        else if(this.dataset.try==='2'){this.dataset.try='3';this.src='https://img.youtube.com/vi/${vid}/default.jpg';}
+                      "
+                      data-try="1" />
                  <div class="video-thumb-overlay"><div class="play-icon"></div></div>`
               : `<img src="${op.image || ''}" alt="${op.title}" loading="lazy" />`;
             return `<div class="artwork-item fade-in">
