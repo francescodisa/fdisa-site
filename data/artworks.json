@@ -31,8 +31,18 @@
           "year": "2025"
         },
         {
-          "youtube": "https://youtu.be/FB_qaNLT-io?si=xnQNmgugAqKxkcXt",
+          "youtube": "https://youtu.be/FB_qaNLT-io",
           "title": "Daodejing",
+          "year": "2025"
+        },
+        {
+          "youtube": "https://youtu.be/eC1NQjCv7OM",
+          "title": "Hamlet",
+          "year": "2025"
+        },
+        {
+          "title": "Bedtime",
+          "youtube": "https://youtu.be/hGCHt14N2QA",
           "year": "2025"
         }
       ],
@@ -453,6 +463,7 @@
           "image": "/images/uploads/1463974_orig.jpeg"
         }
       ]
-    }
+    },
+    {}
   ]
 }
