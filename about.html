@@ -1,61 +1,21 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Francesco D'Isa</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <nav>
-    <div class="nav-inner">
-      <a class="nav-logo" href="index.html">Francesco D'Isa</a>
-      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="artworks.html">Artworks</a></li>
-        <li><a href="books.html">Books</a></li>
-        <li><a href="articles.html">Articles</a></li>
-        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">Videos</a></li>
-      </ul>
-    </div>
-  </nav>
-  <main>
-    <div class="container">
-      <header class="page-header"><h1>About</h1></header>
-      <div class="about-grid fade-in" id="about-content">
-        <div class="about-photo" id="about-photo"></div>
-        <div class="about-bio" id="about-bio"></div>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div class="footer-inner">
-      <small>fuck© <span id="yr"></span> Francesco D'Isa</small>
-      <ul class="footer-links">
-        <li><a href="about.html">Contact</a></li>
-        <li><a href="https://www.youtube.com/@francescodisa" target="_blank" rel="noopener">YouTube</a></li>
-      </ul>
-    </div>
-  </footer>
-  <script src="js/main.js"></script>
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-    fetch('data/about.json').then(r=>r.json()).then(data=>{
-      const photoEl = document.getElementById('about-photo');
-      const bioEl   = document.getElementById('about-bio');
-      if(data.photo){
-        photoEl.innerHTML=`<img src="${data.photo}" alt="Francesco D'Isa" onerror="this.style.background='#DDD9D3';this.style.aspectRatio='3/4';this.removeAttribute('src')"/>`;
-      } else {
-        photoEl.style.display='none';
-        document.getElementById('about-content').style.gridTemplateColumns='1fr';
-      }
-      const paras=(data.bio||[]).map(t=>`<p>${t}</p>`).join('');
-      const email=data.email?`<p>Contatti: <a href="mailto:${data.email}" style="border-bottom:1px solid currentColor">${data.email}</a></p>`:'';
-      bioEl.innerHTML=paras+email;
-      setTimeout(()=>document.querySelectorAll('.fade-in').forEach(el=>el.classList.add('visible')),50);
-    });
-  </script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About · Francesco D&#x27;Isa</title>
+<meta name="description" content="Francesco D&#x27;Isa, philosopher, artist and writer, Florence.">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/tema.js"></script>
+<link rel="stylesheet" href="assets/fonts.css"><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/portfolio.css">
+</head><body>
+<nav aria-label="Sections"><a class="home" href="index.html">Francesco D'Isa</a><div class="links"><a href="film.html">Film</a><a href="opere.html">Works</a><a href="libri.html">Books</a><a href="articoli.html">Writing</a><a href="about.html" class="on">About</a></div><div class="prog" aria-hidden="true"></div></nav>
+<main>
+
+<section id="about"><div class="in"><div class="two"><div><span class="label r">Florence, 1980</span><h1 class="r" style="--d:1">About</h1><p class="r" style="--d:2">Francesco D’Isa (Florence, 1980) is a philosopher, visual artist, and writer. He teaches Philosophy at the Istituto Lorenzo de’ Medici (Florence) and AI Applied to Art at the LABA Academy of Fine Arts (Brescia and Florence). He has published novels, essays, and graphic novels; among his most recent works are Sunyata (2023), an experimental graphic novel created through generative AI, and the essay La rivoluzione algoritmica delle immagini (The Algorithmic Revolution of Images, 2024). His philosophical book L’assurda evidenza, published by Tlon, is slated for translation by Columbia University Press. He serves as Editorial Director of the cultural magazine L’Indiscreto and contributes as an author and illustrator to various international media outlets, publishing in English for The Philosophical Salon, Los Angeles Review of Books, and Philosophy Now.
+Considered a pioneer of digital and AI art in Italy, his practice develops a distinctive aesthetic grounded in creative prompting and in the valorization of generative errors, framed by his ongoing research on “semantic attractors” in latent space.</p>
+<p class="r note" style="--d:4">Contact: <a href="#" class="mail" data-u="francesco.disa" data-d="gmail.com">write an email</a></p></div>
+<figure class="ri portrait" style="--d:0"><img src="img/t/2f168aaf53.jpg" data-full="img/o/2f168aaf53.jpg" width="800" height="1200" alt="Francesco D&#x27;Isa" loading="lazy"></figure></div></div></section>
+<section id="exh"><div class="in"><div class="head"><span class="label r">Selected</span><h2 class="r" style="--d:1">Exhibitions</h2></div><ul class="crono"><li class="r" style="--d:0"><time>2026</time><p>Unum, &quot;La grande trama&quot;, Museo Nazionale Romano, Palazzo Massimo, Rome</p></li><li class="r" style="--d:1"><time>2026</time><p>Tokyo Gendai, presented by TAEX, Japan</p></li><li class="r" style="--d:2"><time>2026</time><p>Latent Rooms, solo show, Rifugio Digitale, Florence</p></li><li class="r" style="--d:3"><time>2026</time><p>Unum, CVPR 2026 AI Art Gallery, Denver</p></li><li class="r" style="--d:0"><time>2024</time><p>Contract of Fiction, Gallery P61, Berlin</p></li><li class="r" style="--d:1"><time>2024</time><p>AI Yoga, Meet Digital Culture Center, Milan</p></li><li class="r" style="--d:2"><time>2024</time><p>Digital Reform, Scoletta dell&#x27;Arte, Venice</p></li><li class="r" style="--d:3"><time>2023</time><p>The Tilt of Time, IED and Fondazione Palazzo Strozzi, Florence</p></li></ul>
+<p class="note r">The full list, with teaching and publications, is in the CV.</p></div></section>
+</main>
+<footer class="note"><span>© <span id="yr"></span> Francesco D'Isa</span><span><a href="#" class="mail" data-u="francesco.disa" data-d="gmail.com">Email</a> · <a href="https://www.youtube.com/@francescodisa">YouTube</a> · <a href="https://www.indiscreto.org/tag/francesco-disa/">L'Indiscreto</a></span></footer>
+<script src="assets/zoom.js"></script><script src="assets/portfolio.js"></script>
+</body></html>

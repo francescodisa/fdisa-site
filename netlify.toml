@@ -1,11 +1,23 @@
 [build]
   publish = "."
 
+# Vecchi indirizzi del sito precedente verso le nuove pagine
+[[redirects]]
+  from = "/articles.html"
+  to = "/articoli.html"
+  status = 301
+
+[[redirects]]
+  from = "/artworks.html"
+  to = "/opere.html"
+  status = 301
+
+[[redirects]]
+  from = "/books.html"
+  to = "/libri.html"
+  status = 301
+
 [[redirects]]
   from = "/admin"
-  to   = "/admin/index.html"
-  status = 200
-
-# Abilita Netlify Identity per il CMS
-[build.environment]
-  NODE_VERSION = "18"
+  to = "/"
+  status = 301
