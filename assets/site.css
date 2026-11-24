@@ -1,0 +1,190 @@
+/* =====================================================================
+   FOGLIO DI STILE CONDIVISO DEI MODULI
+   Stesso sistema visivo del modulo «Dall'I Ching ai LLM»: bianco e nero,
+   fasce alterne. I font arrivano da fonts.css.
+   ===================================================================== */
+:root{
+  --bg:#FFFFFF; --band:#F4F4F2; --card:#FFFFFF; --ink:#0F0F0F; --ink2:#3A3A3A; --soft:#6B6B6B;
+  --mid:#A8A8A6; --rule:#DEDEDC; --ghost:#ECECEA;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(16px,5vw,72px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D0D0D; --band:#161616; --card:#1C1C1C; --ink:#F2F2F0; --ink2:#CFCFCD; --soft:#A2A2A0;
+  --mid:#5E5E5C; --rule:#333331; --ghost:#232321; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D0D0D; --band:#161616; --card:#1C1C1C; --ink:#F2F2F0; --ink2:#CFCFCD; --soft:#A2A2A0;
+  --mid:#5E5E5C; --rule:#333331; --ghost:#232321; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:clamp(18px,1.25vw + 12px,23px);line-height:1.5}
+/* lingue: il testo di ogni lingua sta in elementi con lang="it" / lang="en" */
+body.en [lang="it"],body:not(.en) [lang="en"]{display:none!important}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display);line-height:1.02;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.8rem,8vw,7rem);font-weight:800;letter-spacing:-.035em}
+h2{font-size:clamp(2.1rem,5vw,4.2rem);font-weight:800;letter-spacing:-.03em}
+h3{font-size:1.2em;font-weight:600;letter-spacing:-.01em}
+p{margin:0;max-width:62ch}
+em{font-style:italic}
+a{color:inherit}
+.label{font-family:var(--mono);font-size:.66em;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.note{font-size:.8em;color:var(--soft)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--mid);outline-offset:3px}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);padding-inline:var(--gut);display:flex;align-items:center;gap:1.4em;
+  font-family:var(--mono);font-size:.62em;letter-spacing:.08em;text-transform:uppercase}
+nav .links{display:flex;gap:1.4em;overflow-x:auto;min-width:0;flex:1}
+nav a{color:var(--soft);text-decoration:none;padding-block:1em;white-space:nowrap;border-bottom:3px solid transparent;transition:color .3s,border-color .3s}
+nav a.on{color:var(--ink);border-bottom-color:var(--ink)}
+nav .home{flex:none;color:var(--ink);font-weight:600;border:1.5px solid var(--ink);border-radius:999px;padding:.35em .9em;text-decoration:none}
+.lang{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;flex:none}
+.lang button{all:unset;cursor:pointer;padding:.35em .8em}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+section{padding-block:clamp(3.5rem,10vh,8rem);position:relative;overflow:hidden}
+section:nth-of-type(even){background:var(--band)}
+.in{max-width:1240px;margin-inline:auto;padding-inline:var(--gut);display:flex;flex-direction:column;gap:1.6em;position:relative}
+.head{display:flex;flex-direction:column;gap:.5em}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(1.5rem,4vw,4rem);align-items:start}
+.two>*{min-width:0;display:flex;flex-direction:column;gap:1em}
+.two>p{display:block}
+.lead{font-size:1.12em;max-width:52ch}
+
+
+/* figure e tavole */
+.plates{display:grid;grid-template-columns:1fr;gap:clamp(2rem,3.5vw,3rem) clamp(1.5rem,3vw,2.5rem)}
+@media (min-width:760px){.plates{grid-template-columns:1fr 1fr}}
+.plates.three{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.plate{display:flex;flex-direction:column;gap:.5em;min-width:0}
+.plate p{font-size:.86em;color:var(--ink2)}
+.plate time{font-family:var(--mono);font-size:.72em;color:var(--soft);font-weight:600;letter-spacing:.04em}
+.fig{aspect-ratio:5/3;max-width:100%;background:var(--card);border:1px solid var(--rule);display:grid;place-items:center;overflow:hidden;
+  font-family:var(--mono);font-size:.62em;color:var(--ink);margin-bottom:.4em}
+.fig svg{width:100%;height:100%}
+figure{margin:0;display:flex;flex-direction:column;gap:.5em;min-width:0}
+figure img{width:100%;height:auto;border:1px solid var(--rule);background:var(--card)}
+figure.sq img{aspect-ratio:1;object-fit:cover}
+figcaption{font-family:var(--mono);font-size:.62em;line-height:1.5;color:var(--soft);letter-spacing:.02em}
+figure.missing img{display:none}
+figure.opt.missing{display:none} /* immagini facoltative: se il file non c'è, la figura sparisce */
+figure.missing::before{content:"immagine da aggiungere";display:grid;place-items:center;aspect-ratio:5/3;border:1px dashed var(--mid);
+  font-family:var(--mono);font-size:.62em;color:var(--soft)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(.8rem,1.6vw,1.4rem)}
+svg .s{fill:none;stroke:var(--ink);stroke-width:1.2} svg .m{fill:none;stroke:var(--mid);stroke-width:1}
+svg .f{fill:var(--ink)} svg .fm{fill:var(--mid)} svg .fp{fill:var(--card)}
+svg text{font-family:var(--mono);font-size:9px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+
+/* citazioni */
+blockquote{margin:0;padding:.2em 0 .2em 1.1em;border-left:3px solid var(--ink);font-size:1.05em;max-width:56ch}
+blockquote cite{display:block;margin-top:.5em;font-style:normal;font-family:var(--mono);font-size:.58em;letter-spacing:.06em;color:var(--soft);text-transform:uppercase}
+
+/* pulsanti, schede, cronologie (identici al modulo 1) */
+.keys{display:flex;flex-wrap:wrap;gap:.6em}
+.key{font-family:var(--mono);font-size:.7em;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+  background:var(--card);color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:.55em 1.1em;transition:transform .15s}
+.key:active{transform:scale(.96)}
+.key[aria-pressed="true"],.key.full{background:var(--ink);color:var(--bg)}
+.crono{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:0 clamp(1.2rem,2.5vw,2.5rem)}
+.crono li{padding-block:1em;border-top:3px solid var(--ink);display:flex;flex-direction:column;gap:.25em}
+.crono time{font-family:var(--mono);font-size:.72em;color:var(--soft);font-weight:600;letter-spacing:.04em}
+.crono p{font-size:.86em;color:var(--ink2)}
+.sub{border-top:3px solid var(--ink);padding-top:1.4em;display:flex;flex-direction:column;gap:1.4em;margin-top:1.5em}
+.pipe{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0;position:relative;border:1px solid var(--ink)}
+.pipe>div{padding:1em;display:flex;flex-direction:column;gap:.35em;border-right:1px solid var(--rule);min-width:0;transition:background .4s,color .4s;cursor:pointer}
+.pipe>div:last-child{border-right:0}
+.pipe>div.on{background:var(--ink);color:var(--bg)}
+.pipe>div.on p,.pipe>div.on .n{color:var(--bg)}
+.pipe .n{font-family:var(--mono);font-size:.66em;color:var(--soft);letter-spacing:.1em}
+.pipe p{font-size:.8em;color:var(--ink2)}
+.panel{background:var(--card);border:1px solid var(--rule);padding:1.1em 1.2em;display:flex;flex-direction:column;gap:.7em;min-height:6em}
+.panel p{font-size:.9em}
+.panel.out{animation:in .45s}
+@keyframes in{from{opacity:.1;transform:translateY(.4em)}}
+input[type=range]{width:100%;accent-color:var(--ink)}
+.slider{display:grid;grid-template-columns:auto 1fr auto;gap:.8em;align-items:center;font-family:var(--mono);font-size:.7em;color:var(--soft)}
+.slider b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* nomi cliccabili: aprono la scheda del pensatore (vedi schede.js) */
+.p{all:unset;cursor:pointer;border-bottom:1.5px dotted currentColor;transition:background .2s}
+.p:hover,.p:focus-visible{background:var(--ghost)}
+
+footer{padding-block:2rem;padding-inline:var(--gut);max-width:1240px;margin-inline:auto;display:flex;flex-wrap:wrap;gap:1em 2em;justify-content:space-between}
+footer a{color:var(--soft)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* =====================================================================
+   BLOCCHI DIDATTICI (corsi di Estetica e Fenomenologia dell'arte)
+   Servono a scandire la lezione: domanda di apertura, definizioni della
+   classe e loro problematizzazione, posizioni filosofiche, casi, dibattito.
+   Tutto in bianco e nero, pensato anche per la proiezione in aula.
+   ===================================================================== */
+
+/* domanda di apertura: il blocco più grande della pagina */
+.domanda{border-block:3px solid var(--ink);padding-block:clamp(1.4rem,4vh,2.6rem);display:flex;flex-direction:column;gap:.6em}
+.domanda .q{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.04;
+  font-size:clamp(2rem,5.2vw,4rem);text-wrap:balance;max-width:20ch}
+.domanda .how{font-size:.82em;color:var(--ink2);max-width:62ch}
+
+/* sequenza della lezione */
+.sequenza{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:0 clamp(1rem,2.4vw,2.2rem)}
+.sequenza li{padding-block:.9em;border-top:1px solid var(--ink);display:flex;flex-direction:column;gap:.2em}
+.sequenza .n{font-family:var(--mono);font-size:.64em;letter-spacing:.12em;color:var(--soft)}
+.sequenza b{font-family:var(--display);font-weight:600;font-size:.92em}
+.sequenza p{font-size:.76em;color:var(--ink2)}
+
+/* definizioni raccolte in aula e punto in cui si incrinano */
+.defs{display:flex;flex-direction:column;border:1px solid var(--ink)}
+.defs>div{display:grid;grid-template-columns:minmax(10em,1fr) 1.4fr;border-top:1px solid var(--rule)}
+.defs>div:first-child{border-top:0}
+.defs>div>*{padding:.9em 1em;min-width:0}
+.defs .d{font-family:var(--display);font-weight:600;font-size:.95em;border-right:1px solid var(--rule)}
+.defs .o{font-size:.84em;color:var(--ink2)}
+.defs .o em{color:var(--ink)}
+.defs .hd{background:var(--ink);color:var(--bg)}
+.defs .hd>*{font-family:var(--mono);font-size:.64em;letter-spacing:.12em;text-transform:uppercase;border-right-color:var(--mid)}
+@media (max-width:640px){.defs>div{grid-template-columns:1fr}.defs .d{border-right:0;border-bottom:1px solid var(--rule)}.defs .hd{display:none}}
+
+/* posizioni filosofiche */
+.pos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:0 clamp(1.2rem,2.6vw,2.4rem)}
+.pos>article{padding-block:1.1em;border-top:3px solid var(--ink);display:flex;flex-direction:column;gap:.45em;min-width:0}
+.pos .t{font-family:var(--mono);font-size:.64em;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.pos h3{font-size:1.05em}
+.pos p{font-size:.85em;color:var(--ink2)}
+.pos .tesi{font-size:.92em;color:var(--ink);border-left:3px solid var(--ink);padding-left:.7em}
+.pos .chi{font-family:var(--mono);font-size:.68em;color:var(--soft);display:flex;flex-wrap:wrap;gap:.5em}
+
+/* caso che mette alla prova le definizioni */
+.caso{border:1px solid var(--ink);padding:clamp(1.1em,2.4vw,1.8em);display:flex;flex-direction:column;gap:.7em;background:var(--card)}
+.caso .t{font-family:var(--mono);font-size:.64em;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.caso h3{font-size:1.3em}
+.caso p{font-size:.88em}
+.caso .chiede{font-family:var(--display);font-weight:600;font-size:1.02em;border-top:1px solid var(--rule);padding-top:.7em}
+
+/* dibattito pro e contro */
+.duello{border:3px solid var(--ink);display:flex;flex-direction:column}
+.duello .mozione{padding:clamp(1em,2.4vw,1.6em);border-bottom:3px solid var(--ink);display:flex;flex-direction:column;gap:.4em}
+.duello .mozione .t{font-family:var(--mono);font-size:.64em;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.duello .mozione b{font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,2.8vw,2rem);letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
+.duello .lati{display:grid;grid-template-columns:1fr 1fr}
+.duello .lato{padding:clamp(1em,2.2vw,1.5em);display:flex;flex-direction:column;gap:.5em;min-width:0}
+.duello .lato+.lato{border-left:1px solid var(--ink)}
+.duello .lato h4{margin:0;font-family:var(--mono);font-size:.66em;letter-spacing:.12em;text-transform:uppercase}
+.duello .lato ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:.35em;font-size:.84em;color:var(--ink2)}
+.duello .regole{border-top:1px solid var(--rule);padding:.9em clamp(1em,2.2vw,1.5em);font-family:var(--mono);font-size:.68em;color:var(--soft);
+  display:flex;flex-wrap:wrap;gap:.4em 1.4em}
+@media (max-width:640px){.duello .lati{grid-template-columns:1fr}.duello .lato+.lato{border-left:0;border-top:1px solid var(--ink)}}
+
+/* domanda che resta aperta a fine sezione */
+.aperta{font-family:var(--display);font-weight:600;font-size:clamp(1.1rem,2.4vw,1.6rem);line-height:1.2;text-wrap:balance;
+  border-left:3px solid var(--ink);padding:.3em 0 .3em .8em;max-width:40ch}
+
+/* letture */
+.letture{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:0 clamp(1.2rem,2.6vw,2.4rem)}
+.letture li{padding-block:.8em;border-top:1px solid var(--rule);font-size:.84em;color:var(--ink2)}
+.letture b{color:var(--ink);font-weight:600}
