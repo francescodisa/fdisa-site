@@ -194,3 +194,7 @@ footer{border-top:1px solid var(--rule)}
 .mail{cursor:pointer}
 .still.vid video{width:100%;height:100%;display:block;background:#000;object-fit:contain}
 .lst .nolink{font-weight:600}
+
+.also-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1.5rem clamp(1.5rem,3vw,3rem);margin-top:1rem}
+.also-g .label{display:block;margin-bottom:.6em}
+.also-g .lst .n{display:block;color:var(--soft);font-size:.92em;margin-top:.15em}
